@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v3
       - name: Setup Angular
         run: npm install -g @angular/cli
+      - name: Install Dependencies
+        run: npm install
       - name: Test Angular Project
         run: npm run test 
 
@@ -30,6 +32,8 @@ jobs:
      - uses: actions/setup-node@v3
      - name: Setup Angular
        run: npm install -g @angular/cli
+     - name: Install Dependencies
+       run: npm install
      - name: Lint Angular Project
        run: npm run lint
 
@@ -43,6 +47,8 @@ jobs:
       - uses: actions/setup-node@v3
       - name: Setup Angular
         run: npm install -g @angular/cli
+      - name: Install Dependencies
+        run: npm install
       - name: Check Format Angular Project
         run: npx prettier -w .
 
@@ -55,6 +61,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v3
+    - name: Setup Angular
+      run: npm install -g @angular/cli
+    - name: Install Dependencies
+      run: npm install
     - name: Check Format Angular Project
       run: npm run build --prod
     - name: Archive build bundle

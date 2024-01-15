@@ -20,7 +20,7 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Test Angular Project
-        run: npm run test -- --sourceMap=false --browsers=ChromeHeadless --watch=false
+        run: npm run test -- --browsers=ChromeHeadless --watch=false
 
   lint:
    runs-on: ubuntu-latest

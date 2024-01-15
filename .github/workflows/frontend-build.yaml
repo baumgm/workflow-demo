@@ -1,0 +1,64 @@
+name: Angular CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+     run:
+       working-directory: angular-frontend
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Setup Angular
+        run: npm install -g @angular/cli
+      - name: Test Angular Project
+        run: npm run test 
+
+  lint:
+   runs-on: ubuntu-latest
+   defaults:
+    run:
+      working-directory: angular-frontend
+   steps:
+     - uses: actions/checkout@v3
+     - uses: actions/setup-node@v3
+     - name: Setup Angular
+       run: npm install -g @angular/cli
+     - name: Lint Angular Project
+       run: npm run lint
+
+  format:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: angular-frontend
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Setup Angular
+        run: npm install -g @angular/cli
+      - name: Check Format Angular Project
+        run: npx prettier -w .
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [lint, format, test]
+    defaults:
+      run:
+        working-directory: angular-frontend
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v3
+    - name: Check Format Angular Project
+      run: npm run build --prod
+    - name: Archive build bundle
+      uses: actions/upload-artifact@v4
+      with:
+        name: angular-frontend
+        path: dist/angular-frontend

@@ -3,8 +3,14 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - java-backend/**
+      - .github/workflows/backend-build.yaml
   pull_request:
     branches: [ "main" ]
+    paths:
+      - java-backend/**
+      - .github/workflows/backend-build.yaml
 
 jobs:
   build:

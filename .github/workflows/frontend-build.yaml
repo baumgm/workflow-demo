@@ -3,8 +3,14 @@ name: Angular CI
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - angular-frontend/**
+      - .github/workflows/frontend-build.yaml
   pull_request:
     branches: [ "main" ]
+    paths:
+      - angular-frontend/**
+      - .github/workflows/frontend-build.yaml
 
 jobs:
   test:

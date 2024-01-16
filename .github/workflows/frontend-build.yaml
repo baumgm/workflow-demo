@@ -71,4 +71,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: angular-frontend
-        path: dist/angular-frontend
+        path: angular-frontend/dist/angular-frontend
